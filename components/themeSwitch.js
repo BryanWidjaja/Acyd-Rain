@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dark = "./assets/icons/dark.svg";
   const light = "./assets/icons/light.svg";
 
-  let currThemeSetting = localStorage.getItem("theme") || "light";
+  let currThemeSetting = localStorage.getItem("theme") || "dark";
   document.documentElement.setAttribute("data-theme", currThemeSetting);
 
   if (themeIcon) {
