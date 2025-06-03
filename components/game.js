@@ -10,6 +10,9 @@ const acidWidth = W;
 const acidHeight = H;
 
 let highscore = 0;
+const savedHighscore = localStorage.getItem("acidHighscore");
+highscore = savedHighscore ? parseInt(savedHighscore) : 0;
+
 let level = 1;
 let playerX = 0;
 let playerY = 0;
@@ -188,7 +191,10 @@ const nextLevel = () => {
 
 const gameOver = () => {
   totalCurrentScore += currentScore;
-  if (totalCurrentScore > highscore) highscore = totalCurrentScore;
+  if (totalCurrentScore > highscore) {
+    highscore = totalCurrentScore;
+    localStorage.setItem("acidHighscore", highscore.toString());
+  }
   alert(`Game Over!\nScore: ${totalCurrentScore}\nHighscore: ${highscore}`);
   level = 1;
   totalCurrentScore = 0;
