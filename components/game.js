@@ -254,7 +254,8 @@ const updateInfo = () => {
     <div class="info-item-container"><strong>Current Score :</strong> ${currentScore}</div>
     <div class="info-item-container"><strong>Total Score :</strong> ${totalCurrentScore}</div>
     <div class="info-item-container"><strong>Highscore :</strong> ${highscore}</div>
-    <div class="info-item-container"><strong>Current Color :</strong> <div class="current-color" style="background:${currColor}"></div></div>
+    <div class="info-item-container"><strong>Current Color :</strong> </div>
+    <div class="current-color" style="background:${currColor}"></div>
   `;
 };
 
