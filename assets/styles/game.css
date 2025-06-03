@@ -36,3 +36,10 @@ canvas {
   height: 25px;
   border: solid 0.125rem var(--main-charcoal);
 }
+
+.controls {
+  position: absolute;
+  bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--main-lightgray);
+}
