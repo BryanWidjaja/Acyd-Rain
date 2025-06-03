@@ -1,0 +1,22 @@
+.game {
+  height: 600px;
+  width: 600px;
+  box-shadow: 0 0 0.75rem var(--black-15);
+  position: relative;
+}
+
+canvas {
+  display: block;
+  background: #ccc;
+}
+
+.info {
+  top: 3rem;
+  right: 3rem;
+  /* box-shadow: 0 0 0.75rem var(--black-15); */
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,24 @@
+.footer {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.theme-btn {
+  padding: 0.5rem;
+  background-color: var(--main-offwhite);
+  border-radius: 200rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0.75rem var(--black-15);
+}
+
+.theme-icon {
+  height: 2rem;
+}
+
+.theme-btn:hover {
+  cursor: pointer;
+}

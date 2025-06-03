@@ -1,0 +1,112 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/poppins/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* --main-lime: #90c67c;
+  --main-melon: #67ae6e;
+  --main-emerald: #328e6e;
+
+  --primary-gradient: linear-gradient(
+    135deg,
+    var(--main-lime),
+    var(--main-emerald)
+  ); */
+}
+
+[data-theme="light"] {
+  --main-white: #ffffff;
+  --main-offwhite: #fcfefe;
+  --main-verylightgray: #f0f1f1;
+  --main-lightgray: #999999;
+  --main-darkgray: #3c4040;
+  --main-charcoal: #242829;
+  --black-15: rgba(0, 0, 0, 0.15);
+  --black-30: rgba(0, 0, 0, 0.3);
+  --bg-gradient: linear-gradient(135deg, #f6f6f6, #e2e4e4);
+}
+
+[data-theme="dark"] {
+  --main-white: #2e2f30;
+  --main-offwhite: #3f4141;
+  --main-verylightgray: #484a4a;
+  --main-lightgray: #8f9596;
+  --main-darkgray: #d4dbdc;
+  --main-charcoal: #f3f8f9;
+  --black-15: rgba(128, 128, 128, 0.15);
+  --black-30: rgba(128, 128, 128, 0.3);
+  --bg-gradient: linear-gradient(135deg, #3e4142, #262929);
+}
+
+[data-theme="dark"] .invert-icons {
+  filter: brightness(0) invert(1);
+}
+
+body {
+  font-family: "Poppins", serif;
+  transition: all 0.3s ease;
+  background: var(--bg-gradient);
+  color: var(--main-charcoal);
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+.display-none {
+  display: none !important;
+}
