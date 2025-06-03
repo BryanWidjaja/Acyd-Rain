@@ -40,15 +40,24 @@
 }
 
 :root {
-  /* --main-lime: #90c67c;
-  --main-melon: #67ae6e;
-  --main-emerald: #328e6e;
+  --acid1: #0b8849;
+  --acid2: #20ac3c;
+  --acid3: #7cd628;
+  --acid4: #c8e413;
+  --acid5: #eadb4c;
+  --acid6: #f7ce99;
 
-  --primary-gradient: linear-gradient(
+  --acid-gradient: linear-gradient(
     135deg,
-    var(--main-lime),
-    var(--main-emerald)
-  ); */
+    var(--acid6),
+    var(--acid5),
+    var(--acid4),
+    var(--acid3),
+    var(--acid2),
+    var(--acid1)
+  );
+
+  --player: rgb(238, 84, 84);
 }
 
 [data-theme="light"] {
@@ -60,7 +69,7 @@
   --main-charcoal: #242829;
   --black-15: rgba(0, 0, 0, 0.15);
   --black-30: rgba(0, 0, 0, 0.3);
-  --bg-gradient: linear-gradient(135deg, #f6f6f6, #e2e4e4);
+  --bg-gradient: linear-gradient(135deg, #f6f6f6, #d1d6d6);
 }
 
 [data-theme="dark"] {
@@ -70,8 +79,8 @@
   --main-lightgray: #8f9596;
   --main-darkgray: #d4dbdc;
   --main-charcoal: #f3f8f9;
-  --black-15: rgba(128, 128, 128, 0.15);
-  --black-30: rgba(128, 128, 128, 0.3);
+  --black-15: rgba(70, 70, 70, 0.15);
+  --black-30: rgba(70, 70, 70, 0.3);
   --bg-gradient: linear-gradient(135deg, #3e4142, #262929);
 }
 

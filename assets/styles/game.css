@@ -1,7 +1,7 @@
 .game {
   height: 600px;
   width: 600px;
-  box-shadow: 0 0 0.75rem var(--black-15);
+  box-shadow: 0 0 0.75rem var(--black-30);
   position: relative;
 }
 
@@ -13,10 +13,26 @@ canvas {
 .info {
   top: 3rem;
   right: 3rem;
-  /* box-shadow: 0 0 0.75rem var(--black-15); */
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.info-item-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.current-color {
+  width: 25px;
+  height: 25px;
+  border: solid 0.125rem var(--main-charcoal);
 }

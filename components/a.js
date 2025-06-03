@@ -20,103 +20,63 @@ let totalCurrentScore = 0;
 let currColor = "#000000";
 
 const colors = [
-  "var(--acid1)",
-  "var(--acid2)",
-  "var(--acid3)",
-  "var(--acid4)",
-  "var(--acid5)",
-  "var(--acid6)",
+  "#4caf50",
+  "#2196f3",
+  "#ff9800",
+  "#e91e63",
+  "#9c27b0",
+  "#607d8b",
 ];
 
 let acidBoard = Array.from({ length: acidHeight }, () =>
   Array(acidWidth).fill("#ffffff")
 );
 
-const getSymbolAmount = (level) => {
+function getSymbolAmount(level) {
   if (level <= 3) return 3;
   if (level <= 6) return 4;
   if (level <= 9) return 5;
   return 6;
-};
+}
 
-const getResolvedColors = () =>
-  colors.map((color) =>
-    getComputedStyle(document.documentElement)
-      .getPropertyValue(color.replace("var(", "").replace(")", ""))
-      .trim()
-  );
-
-const getTurnAmount = (level) => {
+function getTurnAmount(level) {
   if (level <= 3) return Math.floor(Math.random() * 5) + 11;
   if (level <= 6) return Math.floor(Math.random() * 4) + 12;
   if (level <= 9) return Math.floor(Math.random() * 2) + 14;
   return Math.floor(Math.random() * 2) + 15;
-};
+}
 
-const randomizeColor = () => {
-  const possible = getResolvedColors().slice(0, getSymbolAmount(level));
-
+function randomizeColor() {
+  const possible = colors.slice(0, getSymbolAmount(level));
   let candidate;
   do {
     candidate = possible[Math.floor(Math.random() * possible.length)];
   } while (!acidBoard.flat().includes(candidate));
   currColor = candidate;
   updateInfo();
-};
+}
 
-const fillAcid = () => {
-  const possible = getResolvedColors().slice(0, getSymbolAmount(level));
+function fillAcid() {
   acidBoard = Array.from({ length: acidHeight }, () =>
     Array(acidWidth).fill("#ffffff")
   );
+  const possible = colors.slice(0, getSymbolAmount(level));
 
-  const fillRandomBlocks = (attempts) => {
-    for (let itr = 0; itr < attempts; itr++) {
-      const x = Math.floor(Math.random() * (acidWidth - 9));
-      const y = Math.floor(Math.random() * (acidHeight - 8));
-      const size = Math.floor(Math.random() * 4) * 2 + 1;
-      const color = possible[Math.floor(Math.random() * possible.length)];
+  for (let itr = 0; itr < 10; itr++) {
+    let x = Math.floor(Math.random() * (acidWidth - 4));
+    let y = Math.floor(Math.random() * (acidHeight - 4));
+    let size = Math.floor(Math.random() * 4) * 2 + 1;
+    let color = possible[Math.floor(Math.random() * possible.length)];
 
-      if (acidBoard[y][x] === "#ffffff") {
-        for (let i = y; i < y + size && i < acidHeight; i++) {
-          for (let j = x; j < x + size && j < acidWidth; j++) {
-            if (acidBoard[i][j] === "#ffffff") {
-              acidBoard[i][j] = color;
-            }
-          }
-        }
+    for (let i = y; i < y + size && i < acidHeight; i++) {
+      for (let j = x; j < x + size && j < acidWidth; j++) {
+        acidBoard[i][j] = color;
       }
     }
-  };
+  }
+}
 
-  const fillRemainingTiles = () => {
-    for (let i = 0; i < acidHeight; i++) {
-      for (let j = 0; j < acidWidth; j++) {
-        if (acidBoard[i][j] === "#ffffff") {
-          const size = Math.floor(Math.random() * 4) * 2 + 1;
-          const color = possible[Math.floor(Math.random() * possible.length)];
-
-          for (let y = i; y < i + size && y < acidHeight; y++) {
-            for (let x = j; x < j + size && x < acidWidth; x++) {
-              if (acidBoard[y][x] === "#ffffff") {
-                acidBoard[y][x] = color;
-              }
-            }
-          }
-        }
-      }
-    }
-  };
-
-  fillRandomBlocks(10);
-  fillRemainingTiles();
-  fillRandomBlocks(10);
-  fillRemainingTiles();
-
-  draw();
-};
-
-const draw = () => {
+function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let y = 0; y < acidHeight; y++) {
@@ -126,11 +86,8 @@ const draw = () => {
     }
   }
 
-  const playerColor = getComputedStyle(document.documentElement)
-    .getPropertyValue("--player")
-    .trim();
-  ctx.strokeStyle = playerColor;
-
+  // Red border around the player tile
+  ctx.strokeStyle = "red";
   ctx.lineWidth = 2;
   ctx.strokeRect(
     playerX * TILE_SIZE,
@@ -138,14 +95,14 @@ const draw = () => {
     TILE_SIZE,
     TILE_SIZE
   );
-};
+}
 
-const resizeCanvas = () => {
+function resizeCanvas() {
   canvas.width = 600;
   canvas.height = 600;
   canvas.style.width = "600px";
   canvas.style.height = "600px";
-};
+}
 
 resizeCanvas();
 
@@ -154,7 +111,7 @@ window.addEventListener("resize", () => {
   draw();
 });
 
-const floodFill = (x, y, target, replacement) => {
+function floodFill(x, y, target, replacement) {
   if (x < 0 || y < 0 || x >= acidWidth || y >= acidHeight) return;
   if (acidBoard[y][x] !== target || target === replacement) return;
 
@@ -165,14 +122,14 @@ const floodFill = (x, y, target, replacement) => {
   floodFill(x - 1, y, target, replacement);
   floodFill(x, y + 1, target, replacement);
   floodFill(x, y - 1, target, replacement);
-};
+}
 
-const checkUniform = () => {
+function checkUniform() {
   const first = acidBoard[0][0];
   return acidBoard.every((row) => row.every((cell) => cell === first));
-};
+}
 
-const nextLevel = () => {
+function nextLevel() {
   level++;
   totalCurrentScore += currentScore;
   currentScore = 0;
@@ -184,18 +141,18 @@ const nextLevel = () => {
   playerY = 0;
   updateInfo();
   draw();
-};
+}
 
-const gameOver = () => {
+function gameOver() {
   totalCurrentScore += currentScore;
   if (totalCurrentScore > highscore) highscore = totalCurrentScore;
   alert(`Game Over!\nScore: ${totalCurrentScore}\nHighscore: ${highscore}`);
   level = 1;
   totalCurrentScore = 0;
   initGame();
-};
+}
 
-const initGame = () => {
+function initGame() {
   fillAcid();
   randomizeColor();
   currentScore = 0;
@@ -206,7 +163,7 @@ const initGame = () => {
   totalTurns = getTurnAmount(level);
   updateInfo();
   draw();
-};
+}
 
 document.addEventListener("keydown", (e) => {
   const prevX = playerX;
@@ -240,16 +197,16 @@ document.addEventListener("keydown", (e) => {
   draw();
 });
 
-const updateInfo = () => {
+function updateInfo() {
   const info = document.getElementById("info-container");
   info.innerHTML = `
-    <div class="info-item-container"><strong>Level :</strong> ${level}</div>
-    <div class="info-item-container"><strong>Turns :</strong> ${turns} / ${totalTurns}</div>
-    <div class="info-item-container"><strong>Current Score :</strong> ${currentScore}</div>
-    <div class="info-item-container"><strong>Total Score :</strong> ${totalCurrentScore}</div>
-    <div class="info-item-container"><strong>Highscore :</strong> ${highscore}</div>
-    <div class="info-item-container"><strong>Current Color :</strong> <div class="current-color" style="background:${currColor}"></div></div>
+    <div><strong>Level:</strong> ${level}</div>
+    <div><strong>Turns:</strong> ${turns} / ${totalTurns}</div>
+    <div><strong>Current Score:</strong> ${currentScore}</div>
+    <div><strong>Total Score:</strong> ${totalCurrentScore}</div>
+    <div><strong>Highscore:</strong> ${highscore}</div>
+    <div><strong>Current Color:</strong> <span style="display:inline-block;width:20px;height:20px;background:${currColor};border:1px solid #000;"></span></div>
   `;
-};
+}
 
 initGame();
